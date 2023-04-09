@@ -1,5 +1,5 @@
 import sys
-from environment import *
+from env import *
 from agent import *
 import matplotlib.pyplot as plt 
 from matplotlib import style
@@ -9,6 +9,7 @@ style.use("ggplot")
 numEpisodes = 200
 
 
+# plot the rewards
 def drawPlots(rewards):
 	plt.figure("Reward Trend")
 	plt.plot(rewards, color = 'b')
@@ -17,6 +18,7 @@ def drawPlots(rewards):
 	plt.show()
 
 
+# training loop for numEpisodes
 def main(env, agent):
 	rewardTrend = []
 
@@ -39,6 +41,10 @@ def main(env, agent):
 	drawPlots(rewardTrend)
 
 
+# parsing arguments in following formats :-
+# python main.py
+# python main.py <numEpisodes>
+# python main.py <numEpisodes> <humanDisplay?>
 if __name__ == "__main__":
 	if len(sys.argv) > 2:
 		env = Env("CartPole-v1", "human")

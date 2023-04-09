@@ -1,0 +1,23 @@
+ENV SETTING=============================
+
+1.	The OpenAI Gym Cartpole environment is used to train the RL agent
+2.	Action space => [Left, Right]
+3.	Observation space => [Position, Velocity, Angle, Angular Velocity]
+4.	An episode ends when 
+	-	pole angle is greater than 12 degrees
+	-	cart position is greater than 2.4 units
+	-	episode length is greater than 500
+5.	Goal is to keep pole upright for as long as possible, and a reward of +1 is received for every step taken including termination step.
+
+HILL CLIMB AGENT============================
+
+1.	Model consists of maintaining a set of weights (StateDim x ActionDim)
+2.	An action is taken by cross product [State(1,S) X Weights(S,A)] and taking max index as the greedy action
+3.	Whenever a reward is received, it compares it with the best reward it received so far and if thats the case, it reduces noise by factor of 2. Else it increases the noise by a factor of 2.
+4.	It then updates the best weights using noise
+	Weights = Weights + Noise x RandomWeights
+
+REFERENCES==============================
+
+1.	OpenAI Gym Cartpole Doc => https://www.gymlibrary.dev/environments/classic_control/cart_pole/
+2.	TowardsDataScience => https://towardsdatascience.com/policy-based-methods-8ae60927a78d#:~:text=Hill%20Climbing%20is%20an%20iterative,while%20interacting%20with%20the%20Environment.
